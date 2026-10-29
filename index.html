@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="透過歷史時間軸、朝代、人物與三國故事，探索中國歷史。">
+  <title>華夏史記｜中國歷史互動網站</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">CHINESE HISTORY · 中國歷史探索</p>
+      <h1>有史以來</h1>
+      <p class="hero-subtitle">穿越千年，探索朝代更迭、歷史人物與經典故事。</p>
+      <a class="primary-button" href="#timeline">開始探索歷史 ↓</a>
+    </div>
+  </header>
+
+  <nav class="navbar" aria-label="主要導覽">
+    <a href="#home">首頁</a>
+    <a href="#dynasties">朝代介紹</a>
+    <a href="#timeline">重大事件</a>
+    <a href="#people">歷史人物</a>
+    <a href="#three-kingdoms">三國演義</a>
+  </nav>
+
+  <main id="home">
+    <section class="intro section">
+      <p class="eyebrow">EXPLORE THE PAST</p>
+      <h2>從歷史認識中國</h2>
+      <p>
+        從早期王朝到清朝，透過年代、重要事件與歷史人物，
+        建立清楚的中國歷史脈絡。
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <strong id="era-count">0</strong>
+          <span>個歷史時期</span>
+        </div>
+        <div class="stat">
+          <strong id="event-count">0</strong>
+          <span>個重要事件</span>
+        </div>
+        <div class="stat">
+          <strong id="people-count">0</strong>
+          <span>位歷史人物</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dynasties">
+      <p class="eyebrow">DYNASTIES</p>
+      <h2>朝代介紹</h2>
+      <p class="section-desc">選擇一個歷史時期，查看簡介與重要年代。</p>
+      <div id="dynasty-list" class="card-grid"></div>
+    </section>
+
+    <section class="section timeline-section" id="timeline">
+      <p class="eyebrow">TIMELINE</p>
+      <h2>重大歷史事件</h2>
+      <p class="section-desc">可以搜尋事件名稱，也能依時期篩選。</p>
+
+      <div class="toolbar">
+        <label class="search-box">
+          <span class="sr-only">搜尋歷史事件</span>
+          <input id="event-search" type="search"
+            placeholder="搜尋事件，例如：赤壁之戰">
+        </label>
+        <select id="era-filter" aria-label="依歷史時期篩選">
+          <option value="all">所有時期</option>
+        </select>
+      </div>
+
+      <div id="timeline-list" class="timeline-list"></div>
+      <p id="event-empty" class="empty hidden">找不到符合條件的事件，請試試其他關鍵字。</p>
+    </section>
+
+    <section class="section" id="people">
+      <p class="eyebrow">HISTORICAL FIGURES</p>
+      <h2>歷史人物</h2>
+      <p class="section-desc">點擊人物卡片，閱讀人物生平與重要事蹟。</p>
+      <div id="people-list" class="card-grid"></div>
+    </section>
+
+    <section class="section story-section" id="three-kingdoms">
+      <p class="eyebrow">ROMANCE OF THE THREE KINGDOMS</p>
+      <h2>三國演義・十篇故事</h2>
+      <p class="section-desc">
+        透過十個章節，認識三國時代的英雄、謀略與戰爭。
+        《三國演義》是歷史小說，部分情節與史實不同。
+      </p>
+
+      <div class="story-reader">
+        <div class="story-number" id="story-number">第 1 篇 / 共 10 篇</div>
+        <h3 id="story-title">桃園結義</h3>
+        <p id="story-content"></p>
+        <div class="story-controls">
+          <button id="story-prev" class="secondary-button">← 上一篇</button>
+          <button id="story-next" class="primary-button">下一篇 →</button>
+        </div>
+        <div id="story-dots" class="story-dots" aria-label="選擇故事章節"></div>
+      </div>
+    </section>
+
+    <section class="section quiz-section" id="quiz">
+      <p class="eyebrow">HISTORY QUIZ</p>
+      <h2>歷史小測驗</h2>
+      <p id="quiz-question"></p>
+      <div id="quiz-options" class="quiz-options"></div>
+      <p id="quiz-feedback" aria-live="polite"></p>
+      <button id="quiz-next" class="primary-button">下一題</button>
+    </section>
+  </main>
+
+  <dialog id="person-dialog" class="person-dialog">
+    <button id="dialog-close" class="dialog-close" aria-label="關閉">×</button>
+    <p class="eyebrow" id="dialog-era"></p>
+    <h2 id="dialog-name"></h2>
+    <p id="dialog-description"></p>
+  </dialog>
+
+  <footer>
+    <p>華夏史記｜中國歷史互動學習網站</p>
+    <p>歷史年份以常見史學紀年為基礎，部分早期年代仍有學術討論。</p>
+  </footer>
+</body>
+</html>
