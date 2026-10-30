@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡我｜有史以來</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-logo" href="index.html">📖 有史以來</a>
+
+    <nav class="site-nav">
+      <a href="index.html">首頁</a>
+      <a href="index.html#dynasties">朝代介紹</a>
+      <a href="index.html#timeline">重大事件</a>
+      <a href="index.html#people">歷史人物</a>
+      <a href="index.html#three-kingdoms">三國演義</a>
+      <a href="contact.html" class="active">聯絡我</a>
+    </nav>
+  </header>
+
+  <main class="contact-page">
+    <section class="contact-intro">
+      <p class="contact-eyebrow">GET IN TOUCH</p>
+      <h1>聯絡我</h1>
+      <p>歡迎提供建議、分享想法，或與我交流歷史故事。</p>
+    </section>
+
+    <section class="contact-card">
+      <h2>留言表單</h2>
+      <p class="contact-note">請填寫以下資料，欄位皆為必填。</p>
+
+      <!-- 將 YOUR_FORM_ID 替換成表單服務提供的 ID -->
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/xwllqgrb"
+        method="POST"
+      >
+        <div class="form-field">
+          <label for="contact-name">名稱</label>
+          <input
+            type="text"
+            id="contact-name"
+            name="name"
+            placeholder="請輸入您的姓名"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="form-field">
+          <label for="contact-phone">電話</label>
+          <input
+            type="tel"
+            id="contact-phone"
+            name="phone"
+            placeholder="例如：0912345678"
+            autocomplete="tel"
+            required
+          >
+        </div>
+
+        <div class="form-field">
+          <label for="contact-email">E-mail</label>
+          <input
+            type="email"
+            id="contact-email"
+            name="email"
+            placeholder="請輸入有效的電子郵件"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-field">
+          <label for="contact-message">敘述內容</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows="6"
+            placeholder="請在此輸入您的問題、建議或留言……"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">
+          送出留言　➜
+        </button>
+
+        <p class="contact-privacy">
+          您提供的資料僅供聯絡與回覆使用，請勿填寫密碼或其他敏感資訊。
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 歷史時光機｜探索歷史，認識世界</p>
+  </footer>
+
+</body>
+</html>
