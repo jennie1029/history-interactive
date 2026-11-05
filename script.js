@@ -511,3 +511,82 @@ renderQuiz();
 document.getElementById("era-count").textContent = dynasties.length;
 document.getElementById("event-count").textContent = events.length;
 document.getElementById("people-count").textContent = people.length;
+
+/*1105*/
+
+/* ===== 首頁圖片自動輪播 ===== */
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroDots = document.getElementById("hero-dots");
+const heroPrev = document.getElementById("hero-prev");
+const heroNext = document.getElementById("hero-next");
+
+let heroIndex = 0;
+let heroTimer;
+
+function showHeroSlide(index) {
+  heroIndex = (index + heroSlides.length) % heroSlides.length;
+
+  heroSlides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === heroIndex);
+  });
+
+  const dots = heroDots.querySelectorAll(".hero-dot");
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === heroIndex);
+    dot.setAttribute("aria-pressed", i === heroIndex);
+  });
+}
+
+// 建立下方圓點
+heroSlides.forEach((slide, index) => {
+  const dot = document.createElement("button");
+
+  dot.className = "hero-dot";
+  dot.type = "button";
+  dot.setAttribute("aria-label", `切換到第 ${index + 1} 張圖片`);
+
+  dot.addEventListener("click", () => {
+    showHeroSlide(index);
+    restartHeroTimer();
+  });
+
+  heroDots.append(dot);
+});
+
+// 左右切換
+heroPrev.addEventListener("click", () => {
+  showHeroSlide(heroIndex - 1);
+  restartHeroTimer();
+});
+
+heroNext.addEventListener("click", () => {
+  showHeroSlide(heroIndex + 1);
+  restartHeroTimer();
+});
+
+// 每五秒自動輪播
+function startHeroTimer() {
+  heroTimer = setInterval(() => {
+    showHeroSlide(heroIndex + 1);
+  }, 5000);
+}
+
+function restartHeroTimer() {
+  clearInterval(heroTimer);
+  startHeroTimer();
+}
+
+startHeroTimer();
+
+// 滑鼠移入時暫停，移開後繼續
+const hero = document.querySelector(".hero");
+
+hero.addEventListener("mouseenter", () => {
+  clearInterval(heroTimer);
+});
+
+hero.addEventListener("mouseleave", () => {
+  restartHeroTimer();
+});
