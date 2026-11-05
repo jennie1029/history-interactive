@@ -590,3 +590,71 @@ hero.addEventListener("mouseenter", () => {
 hero.addEventListener("mouseleave", () => {
   restartHeroTimer();
 });
+
+/* ===== 首頁圖片輪播 ===== */
+(() => {
+  const slides = document.querySelectorAll(".hero-slide");
+  const dotsBox = document.getElementById("hero-dots");
+  const prev = document.getElementById("hero-prev");
+  const next = document.getElementById("hero-next");
+  const hero = document.querySelector(".hero");
+
+  if (!slides.length || !dotsBox || !prev || !next || !hero) {
+    console.error("首頁輪播 HTML 尚未正確載入");
+    return;
+  }
+
+  let current = 0;
+  let timer;
+
+  slides.forEach((slide, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "hero-dot";
+    dot.setAttribute("aria-label", `第 ${i + 1} 張圖片`);
+    dot.addEventListener("click", () => {
+      show(i);
+      restart();
+    });
+    dotsBox.appendChild(dot);
+  });
+
+  const dots = dotsBox.querySelectorAll(".hero-dot");
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === current);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+    });
+  }
+
+  function start() {
+    clearInterval(timer);
+    timer = setInterval(() => show(current + 1), 5000);
+  }
+
+  function restart() {
+    start();
+  }
+
+  prev.addEventListener("click", () => {
+    show(current - 1);
+    restart();
+  });
+
+  next.addEventListener("click", () => {
+    show(current + 1);
+    restart();
+  });
+
+  hero.addEventListener("mouseenter", () => clearInterval(timer));
+  hero.addEventListener("mouseleave", start);
+
+  show(0);
+  start();
+})();
